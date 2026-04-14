@@ -10,12 +10,20 @@ volumen_total_lote = 0.0
 
 for i in range(cantidad_piezas):
     volumen_pieza = float(input(f"Ingrese el volumen de la pieza {i+1} (ml): "))
-    volumen_total_lote += volumen_pieza # Acumulador
+    
+    if volumen_pieza < 0:
+        print("¡ERROR! El volumen no puede ser negativo. Saltando esta pieza")
+        continue    
+
+    if volumen_pieza > 500:
+        print(f"¡ADVERTENCIA! La pieza {i+1} excede los 500ml. Se omitira del lote")
+        continue
+
+    volumen_total_lote += volumen_pieza 
 
 costo_total_lote = volumen_total_lote * costo_ml
 
 print("\n--- Resumen de Producción ---")
-print(f"total de piezas: {cantidad_piezas}")
-print(f"volumen total requerido: {volumen_total_lote: 2f} ml")
-print(f"costo total del lote: ${costo_total_lote: 2f}")
-
+print(f"Total de piezas solicitadas: {cantidad_piezas}")
+print(f"Volumen total aprobado: {volumen_total_lote:.2f} ml")
+print(f"Costo total del lote: ${costo_total_lote:.2f}")
