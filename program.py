@@ -3,18 +3,19 @@ print("++++++++++++++ 3D SERVICES S.A. ++++++++++++++")
 print("+++++ SISTEMA DE CÁLCULO DE MATERIALES +++++")
 print("-------------------------------------------------------")
 
-capacidad_maxima = 500.0
+cantidad_piezas = int(input("¿Cuantas piezas distintas componen el lote?: "))
+costo_ml = float(input("Ingrese el costo de la resina por ml ($): "))
 
-volumen = float(input("Ingrese el volumen de la pieza (ml): "))
+volumen_total_lote = 0.0
 
-if volumen > capacidad_maxima:
-    print("ERROR La pieza excede la capacidad maxima de la impresora (500 ml)")
-    print("Sugenrencia: Divida el modelo en partes mas pequeñas.")
+for i in range(cantidad_piezas):
+    volumen_pieza = float(input(f"Ingrese el volumen de la pieza {i+1} (ml): "))
+    volumen_total_lote += volumen_pieza # Acumulador
 
-else:
-    costo_ml = float(input("Ingrese el costo de la resina por ml ($): "))
-    costo_total = volumen * costo_ml
-    print("Estado: ¡Aprobado para impresión!")
-    print(f"El costo total de la impresión es: ${costo_total:.2f}")
-    
+costo_total_lote = volumen_total_lote * costo_ml
+
+print("\n--- Resumen de Producción ---")
+print(f"total de piezas: {cantidad_piezas}")
+print(f"volumen total requerido: {volumen_total_lote: 2f} ml")
+print(f"costo total del lote: ${costo_total_lote: 2f}")
 
